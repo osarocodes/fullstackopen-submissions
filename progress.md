@@ -11,6 +11,7 @@
 
 ## ⚛️ Part 2 - Communicating with server
 - [x] 2.1 - CourseInfo step 6
-- [ ] 2.2
-- [ ] 2.3
+- [x] 2.2 - CourseInfo step 7
+- [x] 2.3 - CourseInfo step 8
 ...
+- [x] 2.5 - CourseInfo step 10
