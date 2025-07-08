@@ -20,5 +20,10 @@
 - [x] 2.6 - The Phonebook step 1
 - [x] 2.7 - The Phonebook step 2
 - [x] 2.8 - The Phonebook step 3
-- [ ] 2.9 - The Phonebook step 4
-- [ ] 2.10 - The Phonebook step 5
+- [x] 2.9 - The Phonebook step 4
+- [x] 2.10 - The Phonebook step 5
+#### Altering data in server
+- [x] 2.11 - The Phonbook step 6
+- [x] 2.12 - The Phonebook step 7
+...
+- [x] 2.15 - The Phonebook step 10
