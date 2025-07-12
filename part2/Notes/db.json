@@ -1,0 +1,44 @@
+{
+  "notes": [
+    {
+      "id": "1",
+      "content": "HTML is easy",
+      "important": false
+    },
+    {
+      "id": "2",
+      "content": "Browser can execute only javaScript",
+      "important": true
+    },
+    {
+      "id": "3",
+      "content": "GET and POST are the most important methods of HTTP protocol",
+      "important": true
+    },
+    {
+      "id": "3c06",
+      "content": "POST is used to add data",
+      "important": true
+    },
+    {
+      "id": "ee24",
+      "content": "Learning a bit of backend at the moment",
+      "important": true
+    },
+    {
+      "id": "7768",
+      "content": "Hello world, I'm coming to conquer you",
+      "important": true
+    },
+    {
+      "id": "1a90",
+      "content": "Hi, I am osaro ",
+      "important": true
+    },
+    {
+      "id": "7658",
+      "content": "I have set up a delete function to handle this large dataset",
+      "important": true
+    }
+  ]
+}
