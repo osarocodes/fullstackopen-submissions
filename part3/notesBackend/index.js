@@ -22,7 +22,7 @@ let notes = [
 ]
 
 app.use(express.json())
-app.use(cors({ origin: 'https://note-frontend-qowv.onrender.com/' }))
+app.use(cors())
 
 app.get('/api/notes/:id', (req, res) => {
   const id = req.params.id
