@@ -1,0 +1,10 @@
+Get http://localhost:3001/api/notes/
+
+###
+POST http://localhost:3001/api/notes/ HTTP/1.1
+content-type: application/json
+
+{
+  "content": "Postman and Rest client are the way to go when working with backend",
+  "important": true
+}
