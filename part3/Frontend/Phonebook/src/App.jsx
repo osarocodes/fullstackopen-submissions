@@ -146,8 +146,7 @@ const App = () => {
             <h3>Numbers</h3>
             {displayedPersons.map((person) => 
             <>
-              <Persons key={person.id} person={person}/>
-              <button onClick={() => handleDelete(person.id)}>delete</button>
+              <Persons key={person.id} person={person} handleDelete={handleDelete}/>
             </>
             )}
           </>
