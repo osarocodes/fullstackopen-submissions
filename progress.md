@@ -34,3 +34,8 @@
 - [x] 2.18 - Receiving data for countries  Step 1
 - [x] 2.19 - Creating interface for display  Step 2
 - [x] 2.20 - Adding a weather feature to it  Step 3
+## 🌐 Part 3 - Deploying live and saving data to mongodb
+- [x] 3.1:3.8 - Nodejs and express
+- [x] 3.9:3.11 - Deploying app tno internet
+- [ ] 3.12:3.18 - Saving data to MongoDB
+- [ ] 3.19:3.22 - Validation and ESlint
