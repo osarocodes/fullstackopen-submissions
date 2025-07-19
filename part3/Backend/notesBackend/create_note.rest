@@ -8,3 +8,5 @@ content-type: application/json
   "content": "Postman and Rest client are the way to go when working with backend",
   "important": true
 }
+###
+DELETE http://localhost:3001/api/notes/6878e22404bf4fe4c970c4ee HTTP/1.1

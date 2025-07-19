@@ -13,7 +13,11 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "mongoose": "^8.16.3",
+    "morgan": "^1.10.1",
+    "nslookup": "^1.1.1"
   }
 }
