@@ -9,10 +9,10 @@ const URI = `mongodb+srv://osarocodes:${password}@cluster0.aofb1nt.mongodb.net/p
 
 mongoose.set('strictQuery', false)
 mongoose.connect(URI)
-  .then(response => {
-    console.log("connected successfully")
+  .then(() => {
+    console.log('connected successfully')
   })
-  .catch(err => console.log("Unable to connect"))
+  .catch(() => console.log('Unable to connect'))
 
 const personSchema = {
   name: String,
@@ -27,19 +27,19 @@ const person = new Person({
 })
 
 if (process.argv.length === 5) {
-  person.save().then(result => {
+  person.save().then(() => {
     console.log(`added ${name} number ${number} to phonebook`)
   })
 }
 
 if (process.argv.length < 3) {
-  console.log("give pasword as argument")
+  console.log('give pasword as argument')
   process.exit(1)
 }
 
 if (process.argv.length === 3) {
   Person.find({}).then(result => {
-    console.log("Phonebook: ")
+    console.log('Phonebook: ')
     result.forEach(person => {
       console.log(person.name, person.number)
     })

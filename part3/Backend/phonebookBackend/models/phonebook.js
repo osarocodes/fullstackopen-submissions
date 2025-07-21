@@ -5,27 +5,27 @@ mongoose.set('strictQuery', true)
 
 const url = process.env.MONGODB_URI
 
-console.log("Connecting to", url)
+console.log('Connecting to', url)
 mongoose.connect(url)
-  .then(result => {
-    console.log("Connected successfully")
+  .then(() => {
+    console.log('Connected successfully')
   })
   .catch(error => {
-    console.log("Unable to connect: ", error.message)
+    console.log('Unable to connect: ', error.message)
   })
 
 const personSchema = new mongoose.Schema({
   name: {
-      type: String,
-      minLength: 3,
-      required: true
+    type: String,
+    minLength: 3,
+    required: true
   },
   number: {
     type: String,
     minLength: 8,
     validate: {
       validator: function(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
+        return /\d{3}-\d{3}-\d{4}/.test(v)
       },
       message: props => `${props.value} is not a valid phone number!format should be xxx-xxx-xxxx`
     },
@@ -40,4 +40,4 @@ personSchema.set('toJSON', {
     delete returnedObject.__v
   }
 })
-module.exports = mongoose.model("Person", personSchema)
+module.exports = mongoose.model('Person', personSchema)
