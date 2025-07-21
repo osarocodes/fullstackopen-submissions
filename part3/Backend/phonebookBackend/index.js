@@ -2,14 +2,15 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const cors = require('cors');
+const Person = require('./models/phonebook')
 
+app.use(express.static('dist'))
 app.use(express.json())
 morgan.token('body', (req) => JSON.stringify(req.body))
 app.use(
   morgan(':method :url :status :res[content-length] - :response-time ms :body')
 )
 app.use(cors())
-app.use(express.static('dist'))
 
 let persons = [
     { 
@@ -35,18 +36,24 @@ let persons = [
 ]
 
 app.get('/api/persons', (req, res) => {
-  res.json(persons)
+  Person.find({}).then(person => {
+    res.json(person)
+  })
 })
 
 app.get('/api/persons/:id', (req, res) => {
-  const id = req.params.id;
-  const person = persons.find(n => n.id === id)
-
-  if (!person) {
-    res.status(404).end()
-  } else {
-    res.json(person)
-  }
+  Person.findById(req.params.id)
+  .then(person => {
+    if (!person) {
+      res.status(404).end()
+    } else {
+      res.json(person)
+    }
+  })
+  .catch(error => {
+    console.log(error.message)
+    res.status(500).end()
+  })
 })
 
 app.get('/info', (req, res) => {
@@ -58,22 +65,27 @@ app.get('/info', (req, res) => {
     <p>${currentTime}</p>
     `)
 })
-
-app.delete('/api/persons/:id', (req, res) => {
-  const id = req.params.id;
-  persons = persons.filter(n => n.id !== id)
-
-  res.status(204).end()
+app.put('/api/persons/:id', (req, res, next) => {
+  Person.findByIdAndUpdate(req.params.id, 
+    { number: req.body.number },
+    {runValidators: true, new: true, context: 'query'})
+    .then(updatedPerson => {
+      if (!updatedPerson) return res.status(404).send({error: "Not Found"})
+      res.json(updatedPerson)
+    })
+    .catch(error => next(error))
 })
 
-const generateId = () => {
-  const maxId = persons.length > 0
-    ? Math.max(...persons.map(n => Number(n.id)))
-    : 0
-  return String(maxId + 1)
-}
 
-app.post('/api/persons/', (req, res) => {
+app.delete('/api/persons/:id', (req, res, next) => {
+  Person.findByIdAndDelete(req.params.id)
+    .then(result => {
+      res.status(204).end()
+    })
+    .catch(error => next(error))
+})
+
+app.post('/api/persons/', (req, res, next) => {
   const body = req.body;
 
   if (!body.name || !body.number) {
@@ -82,22 +94,15 @@ app.post('/api/persons/', (req, res) => {
     })
   }
   
-  const person = {
-    id: generateId(),
+  const person = new Person({
     name: body.name,
     number: body.number
-  }
+  })
 
-  if (persons.some(p => p.name.toLowerCase() === person.name.toLowerCase())) {
-    return res.status(400).json({
-      error: "name must be unique"
-    })
-  }
-
-  console.log('Request body: ', req.body)
-  persons = persons.concat(person)
-  res.json(person)
-
+  person.save().then(savedPerson => {
+    res.json(savedPerson)
+  })
+  .catch(error => next(error))
 })
 
 const unknownEndpoint = (req, res) => {
@@ -105,5 +110,18 @@ const unknownEndpoint = (req, res) => {
 }
 app.use(unknownEndpoint)
 
-const PORT = process.env.PORT || 3001
+
+const errorHandler = (error, req, res, next) => {
+  console.log(error.message)
+
+  if(error.name === 'CastError') {
+    return res.status(400).send({ error: "Malformatted id" })
+  } else if (error.name === 'ValidationError') {
+    return res.status(400).json({ error: error.message })
+  }
+  next(error)
+}
+app.use(errorHandler)
+
+const PORT = process.env.PORT
 app.listen(PORT, () => console.log("Server running on Port", PORT))
