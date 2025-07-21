@@ -80,6 +80,7 @@ const App = () => {
       .then(newPerson => {
         setPersons(persons.concat(newPerson))
         setNotification(`Added ${trimmedName}`)
+        setColor('green')
         setTimeout(() => {
           setNotification(null)
         }, 5000)

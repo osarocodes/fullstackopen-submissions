@@ -11,7 +11,7 @@ h1 {
   font-style: monospace;
   border-radius: 5px;
   /* background: green; */
-  color: white;
+  color: rgb(255, 255, 255);
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   z-index: 1000;
   animation: fadeIn 0.3s, fadeOut 0.3s 4.7s;
