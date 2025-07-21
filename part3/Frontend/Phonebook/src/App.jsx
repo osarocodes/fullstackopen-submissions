@@ -76,16 +76,22 @@ const App = () => {
     }
     
     personService
-    .create(personObject)
-    .then(newPerson => {
-      setPersons(persons.concat(newPerson))
-      setNotification(`Added ${trimmedName}`)
-      setColor('green')
-      setTimeout(() => {
-        setNotification(null)
-      }, 5000)
-      setNewName('')
-      setNewNumber('')
+      .create(personObject)
+      .then(newPerson => {
+        setPersons(persons.concat(newPerson))
+        setNotification(`Added ${trimmedName}`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
+        setNewName('')
+        setNewNumber('')
+      })
+      .catch(error => {
+        setNotification(`${error.response.data.error}`)
+        setColor('red')
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
     })
   }
 
@@ -127,8 +133,6 @@ const App = () => {
     ? persons.filter(person => 
       person.name.toLowerCase().includes(filteredName.toLowerCase()))
     : persons;
-    
-    
 
   return (
           <>
@@ -144,10 +148,8 @@ const App = () => {
             newNumber={newNumber}
             />
             <h3>Numbers</h3>
-            {displayedPersons.map((person) => 
-            <>
+            {Array.isArray(displayedPersons) && displayedPersons.map((person) => 
               <Persons key={person.id} person={person} handleDelete={handleDelete}/>
-            </>
             )}
           </>
   )
