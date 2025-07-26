@@ -41,6 +41,6 @@
 - [x] 3.19:3.22 - Validation and ESlint
 ## Part 4 - Writing unit and integration tests for the backend and implementing user authentication and authorization.
 - [x] 4.1:4.7 - Structure of backend application, introduction to testing
-- [] 4.8:4.14 - Testing the backend
+- [x] 4.8:4.14 - Testing the backend
 - [] ---:--- - User authorization
 - [] 4.15:4.23 - Token authentication
