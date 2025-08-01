@@ -1,0 +1,66 @@
+GET http://localhost:4001/api/users HTTP/1.1
+
+###
+POST http://localhost:4001/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "TIMGIVEON",
+  "name": "codeKong",
+  "password": "peoplesay123"
+}
+
+###
+POST http://localhost:4001/api/notes HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRJTUdJVkVPTiIsImlkIjoiNjg4OTcwNDZhZTE0YjZiZDc2OGY0YmQ4IiwiaWF0IjoxNzUzODQwMTU0fQ.I0cQpLbmZNoiXQFiZUJPYdZ7wWclPTkv_1HUGWQMlOw
+
+{
+  "content": "Single page apps use token based auth",
+  "important": false,
+  "userId": "6887373dfc6c7c936cdb377a"
+}
+
+
+###
+DELETE http://localhost:3001/api/notes/6879a31a230d30993953acc4 HTTP/1.1
+
+###
+POST http://localhost:4001/api/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "osarodion",
+  "password": ""
+}
+
+
+###
+POST http://localhost:3003/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "company",
+  "name": "Osaro Eboizegbe",
+  "password": "co"
+}
+
+###
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Setting a blog post for a user",
+  "author": "Banjo motunrayo",
+  "url": "https://reactpatterns.com/",
+  "likes": 7,
+  "userId": "688ad4ef272884530b266bab"
+}
+###
+POST http://localhost:3003/api/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "codeKong",
+  "password": "codeKong@20"
+}
